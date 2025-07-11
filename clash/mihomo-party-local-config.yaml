@@ -606,60 +606,129 @@ dns:
       - cdn.jsdelivr.net.cdn.cloudflare.net
 
 # 锚点 - 节点订阅的参数 [每24小时更新一次订阅节点，每 60 秒一次健康检查]
-NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'http://www.google.com/generate_204', interval: 60}}
+NodeParam: &NodeParam {type: http, interval: 86400, health-check: {enable: true, url: 'https://www.google.com/generate_204', interval: 60}}
 
 # 锚点 - 节点订阅
 proxy-providers: 
-  我的节点:
-    url: '机场的订阅地址'
+  subscribe:
+    url: '...'
     <<: *NodeParam
     path: './proxy_provider/Providers.yaml'
 
 # 锚点 - 节点筛选组
-FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
-FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|taiwan|Taiwan)\b))).*$'
-FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b))).*$'
-FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b))).*$'
-FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$'
-FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
-FilterUK: &FilterUK '^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b))).*$'
-FilterFR: &FilterFR '^(?=.*((?i)🇫🇷|法国|(\b(FR|France)\b))).*$'
-FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b))).*$'
-FilterOther: &FilterOther '^(?!.*(🇭🇰|HK|Hong|香港|🇹🇼|TW|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
-FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|校园)).*$'
-FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
+#FilterHK: &FilterHK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b))).*$'
+#FilterTW: &FilterTW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|taiwan|Taiwan)\b))).*$'
+#FilterJP: &FilterJP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b))).*$'
+#FilterKR: &FilterKR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b))).*$'
+#FilterSG: &FilterSG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b))).*$'
+#FilterUS: &FilterUS '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b))).*$'
+#FilterUK: &FilterUK '^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b))).*$'
+#FilterFR: &FilterFR '^(?=.*((?i)🇫🇷|法国|(\b(FR|France)\b))).*$'
+#FilterDE: &FilterDE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b))).*$'
+#FilterOther: &FilterOther '^(?!.*(🇭🇰|HK|Hong|香港|🇹🇼|TW|台湾|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
+#FilterGame: &FilterGame '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|校园)).*$'
+#FilterAll: &FilterAll '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
+
+HK: &HK '^(?=.*((?i)🇭🇰|香港|(\b(HK|Hong)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+TW: &TW '^(?=.*((?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+JP: &JP '^(?=.*((?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+KR: &KR '^(?=.*((?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+SG: &SG '^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+US: &US '^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+UK: &UK '^(?=.*((?i)🇬🇧|英国|伦敦|(\b(UK|United Kingdom)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+FR: &FR '^(?=.*((?i)🇫🇷|法国|(\b(FR|France)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+DE: &DE '^(?=.*((?i)🇩🇪|德国|(\b(DE|Germany)\b)))(?!.*((?i)回国|mail|校园|游戏|🎮|(\b(GAME)\b))).*$'
+Other: &Other '^(?!.*(🇭🇰|HK|mail|Hong|香港|🇹🇼|TW|台湾|Taiwan|Wan|🇯🇵|JP|Japan|日本|🇸🇬|SG|Singapore|狮城|🇺🇸|US|United States|America|美国|🇩🇪|DE|Germany|德国|🇬🇧|UK|United Kingdom|英国|🇰🇷|KR|Korea|韩国|韓|🇫🇷|FR|France|法国)).*$'
+Game: &Game '^(?=.*((?i)游戏|🎮|(\b(GAME)\b)))(?!.*((?i)回国|mail|校园)).*$'
+# Mail: &Mail '^.*(?i:prefix|mail|cf-worker).*$'
+Mail: &Mail '^.*(?i:无端口限制).*$'
+All: &All '^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|(\b(USE|USED|TOTAL|Traffic|Expire|EMAIL|Panel|Channel|Author)\b|(\d{4}-\d{2}-\d{2}|\d+G)))).*$'
 
 # 锚点 - 故障转移参数 [每 10 秒一次惰性健康检查，时延超过 2 秒判定为失败，失败 3 次则自动触发健康检查]
-FallBack: &FallBack {type: fallback, interval: 10, lazy: true, url: 'http://www.google.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: false, include-all-providers: true}
+FallBack: &FallBack {type: fallback, interval: 10, lazy: true, url: 'https://www.google.com/generate_204', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
+# FallBack: &FallBack {type: fallback, interval: 300, lazy: true, url: 'https://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
+
+# 代理组相关
+Select: &Select {type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, AllServer, DIRECT]}
+UrlTest: &UrlTest {type: url-test, interval: 300, tolerance: 20, lazy: true, url: 'https://cp.cloudflare.com', disable-udp: false, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
+LoadBalance: &LoadBalance {type: load-balance, interval: 300, lazy: true, url: 'https://cp.cloudflare.com', disable-udp: false, strategy: consistent-hashing, timeout: 2000, max-failed-times: 3, hidden: true, include-all-providers: true}
+
 # 锚点 - 规则参数 [每天更新一次订阅规则，更新规则时使用直连策略]
 RuleSet: &RuleSet {type: http, behavior: classical, interval: 86400, format: yaml, proxy: DIRECT}
 
 # 策略组
 proxy-groups:
-  - {name: Proxy, type: select, proxies: [🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/pompurin404/mihomo-party/master/resources/icon.png'}
-  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png'}
-  - {name: AI, type: select, include-all: true, filter: *FilterAll, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png'}
-  - {name: Notion, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Notion.png'}
-  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'}
-  - {name: Netflix, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png'}
-  - {name: Disney+, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png'}
-  - {name: YouTube, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png'}
-  - {name: Google, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png'}
-  - {name: TikTok, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'}
-  - {name: Spotify, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png'}
-  - {name: Gamer, type: select, include-all: true, filter: *FilterGame, proxies: [DIRECT, Proxy], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'}
-  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'}
-  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 香港节点, 🇹🇼 台湾节点, 🇯🇵 日本节点, 🇰🇷 韩国节点, 🇸🇬 新加坡节点, 🇺🇸 美国节点, 🇬🇧 英国节点, 🇫🇷 法国节点, 🇩🇪 德国节点, 🇺🇳 其他节点], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png'}
-  - {name: 🇭🇰 香港节点, <<: *FallBack, filter: *FilterHK}
-  - {name: 🇹🇼 台湾节点, <<: *FallBack, filter: *FilterTW}
-  - {name: 🇯🇵 日本节点, <<: *FallBack, filter: *FilterJP}
-  - {name: 🇰🇷 韩国节点, <<: *FallBack, filter: *FilterKR}
-  - {name: 🇸🇬 新加坡节点, <<: *FallBack, filter: *FilterSG}
-  - {name: 🇺🇸 美国节点, <<: *FallBack, filter: *FilterUS}
-  - {name: 🇬🇧 英国节点, <<: *FallBack, filter: *FilterUK}
-  - {name: 🇫🇷 法国节点, <<: *FallBack, filter: *FilterFR}
-  - {name: 🇩🇪 德国节点, <<: *FallBack, filter: *FilterDE}
-  - {name: 🇺🇳 其他节点, <<: *FallBack, filter: *FilterOther}
+  - {name: Proxy, type: select, proxies: [🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/pompurin404/mihomo-party/master/resources/icon.png'}
+  - {name: Apple, type: select, proxies: [DIRECT, Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Apple_1.png'}
+  - {name: AI, type: select, include-all: true, filter: *All, proxies: [🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ChatGPT.png'}
+  - {name: Notion, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Notion.png'}
+  - {name: Telegram, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png'}
+  - {name: Netflix, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Netflix.png'}
+  - {name: Disney+, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Disney.png'}
+  - {name: YouTube, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/YouTube.png'}
+  - {name: Google, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png'}
+  - {name: TikTok, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/TikTok.png'}
+  - {name: Spotify, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Spotify.png'}
+  - {name: Gamer, type: select, include-all: true, filter: *Game, proxies: [DIRECT, Proxy], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png'}
+  - {name: Microsoft, type: select, proxies: [DIRECT, Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png'}
+  - {name: OneDrive, type: select, proxies: [DIRECT, Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/OneDrive.png'}
+  - {name: GlobalMedia, type: select, proxies: [Proxy, 🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png'}
+
+  - {name: AllServer, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png, type: select, include-all-providers: true, filter: *All}
+  - {name: 📧 Mail, <<: *FallBack, filter: *Mail, proxies: [🇭🇰 HongKong, 🇹🇼 TaiWan, 🇯🇵 Japan, 🇰🇷 Korea, 🇸🇬 Singapore, 🇺🇸 America, 🇬🇧 UnitedKingdom, 🇫🇷 France, 🇩🇪 Germany, 🇺🇳 Others, AllServer, ✋ 手动选择, ✋ 手动选择1, ✋ 手动选择2, 🔨 自动选择], icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Mail.png', hidden: false}
+  - {name: ✋ 手动选择, type: select, include-all: true, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Clubhouse.png'}
+  - {name: ✋ 手动选择1, type: select, include-all: true, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Star_2.png'}
+  - {name: ✋ 手动选择2, type: select, include-all: true, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Star.png'}
+  - {name: 🔨 自动选择, type: url-test, url: https://www.gstatic.com/generate_204, interval: 600, include-all: true, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Speedtest.png'}
+
+  - {name: 🇭🇰 HongKong, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png', type: select, proxies: [🇭🇰 HK-Auto, 🇭🇰 HK-FallBack, 🇭🇰 HK-LoadBalance], include-all-providers: true, filter: *HK}
+  - {name: 🇹🇼 TaiWan, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png', type: select, proxies: [🇹🇼 TW-Auto, 🇹🇼 TW-FallBack, 🇹🇼 TW-LoadBalance], include-all-providers: true, filter: *TW}
+  - {name: 🇯🇵 Japan, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png', type: select, proxies: [🇯🇵 JP-Auto, 🇯🇵 JP-FallBack, 🇯🇵 JP-LoadBalance], include-all-providers: true, filter: *JP}
+  - {name: 🇰🇷 Korea, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Korea.png', type: select, proxies: [🇰🇷 KR-Auto, 🇰🇷 KR-FallBack, 🇰🇷 KR-LoadBalance], include-all-providers: true, filter: *KR}
+  - {name: 🇸🇬 Singapore, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png', type: select, proxies: [🇸🇬 SG-Auto, 🇸🇬 SG-FallBack, 🇸🇬 SG-LoadBalance], include-all-providers: true, filter: *SG}
+  - {name: 🇺🇸 America, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png', type: select, proxies: [🇺🇸 US-Auto, 🇺🇸 US-FallBack, 🇺🇸 US-LoadBalance], include-all-providers: true, filter: *US}
+  - {name: 🇬🇧 UnitedKingdom, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_Kingdom.png', type: select, proxies: [🇬🇧 UK-Auto, 🇬🇧 UK-FallBack, 🇬🇧 UK-LoadBalance], include-all-providers: true, filter: *UK}
+  - {name: 🇫🇷 France, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/France.png', type: select, proxies: [🇫🇷 FR-Auto, 🇫🇷 FR-FallBack, 🇫🇷 FR-LoadBalance], include-all-providers: true, filter: *FR}
+  - {name: 🇩🇪 Germany, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Germany.png', type: select, proxies: [🇩🇪 DE-Auto,🇩🇪 DE-FallBack,🇩🇪 DE-LoadBalance], include-all-providers: true, filter: *DE}
+  - {name: 🇺🇳 Others, icon: 'https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/UN.png', type: select, proxies: [🇺🇳 Others-Auto, 🇺🇳 Others-FallBack, 🇺🇳 Others-LoadBalance], include-all-providers: true, filter: *Other}
+
+  # hidden
+  # 延时优选代理组
+  - {name: 🇭🇰 HK-Auto, <<: *UrlTest, filter: *HK}
+  - {name: 🇹🇼 TW-Auto, <<: *UrlTest, filter: *TW}
+  - {name: 🇯🇵 JP-Auto, <<: *UrlTest, filter: *JP}
+  - {name: 🇰🇷 KR-Auto, <<: *UrlTest, filter: *KR}
+  - {name: 🇸🇬 SG-Auto, <<: *UrlTest, filter: *SG}
+  - {name: 🇺🇸 US-Auto, <<: *UrlTest, filter: *US}
+  - {name: 🇬🇧 UK-Auto, <<: *UrlTest, filter: *UK}
+  - {name: 🇫🇷 FR-Auto, <<: *UrlTest, filter: *FR}
+  - {name: 🇩🇪 DE-Auto, <<: *UrlTest, filter: *DE}
+  - {name: 🇺🇳 Others-Auto, <<: *UrlTest, filter: *Other}
+
+  # 故障转移代理组
+  - {name: 🇭🇰 HK-FallBack, <<: *FallBack, filter: *HK}
+  - {name: 🇹🇼 TW-FallBack, <<: *FallBack, filter: *TW}
+  - {name: 🇯🇵 JP-FallBack, <<: *FallBack, filter: *JP}
+  - {name: 🇰🇷 KR-FallBack, <<: *FallBack, filter: *KR}
+  - {name: 🇸🇬 SG-FallBack, <<: *FallBack, filter: *SG}
+  - {name: 🇺🇸 US-FallBack, <<: *FallBack, filter: *US}
+  - {name: 🇬🇧 UK-FallBack, <<: *FallBack, filter: *UK}
+  - {name: 🇫🇷 FR-FallBack, <<: *FallBack, filter: *FR}
+  - {name: 🇩🇪 DE-FallBack, <<: *FallBack, filter: *DE}
+  - {name: 🇺🇳 Others-FallBack, <<: *FallBack, filter: *Other}
+
+  # 负载均衡代理组
+  - {name: 🇭🇰 HK-LoadBalance, <<: *LoadBalance, filter: *HK}
+  - {name: 🇹🇼 TW-LoadBalance, <<: *LoadBalance, filter: *TW}
+  - {name: 🇯🇵 JP-LoadBalance, <<: *LoadBalance, filter: *JP}
+  - {name: 🇰🇷 KR-LoadBalance, <<: *LoadBalance, filter: *KR}
+  - {name: 🇸🇬 SG-LoadBalance, <<: *LoadBalance, filter: *SG}
+  - {name: 🇺🇸 US-LoadBalance, <<: *LoadBalance, filter: *US}
+  - {name: 🇬🇧 UK-LoadBalance, <<: *LoadBalance, filter: *UK}
+  - {name: 🇫🇷 FR-LoadBalance, <<: *LoadBalance, filter: *FR}
+  - {name: 🇩🇪 DE-LoadBalance, <<: *LoadBalance, filter: *DE}
+  - {name: 🇺🇳 Others-LoadBalance, <<: *LoadBalance, filter: *Other}
+  # hidden end
 
 # 订阅规则
 rule-providers:
@@ -763,6 +832,12 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude_No_Resolve.yaml'
     path: './RuleSet/Claude.yaml'
 
+  Anthropic:
+    <<: *RuleSet
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Anthropic/Anthropic_No_Resolve.yaml'
+    path: './RuleSet/Claude.yaml'  
+
+
   Ai_non_ip:
     type: http
     behavior: classical
@@ -789,13 +864,28 @@ rule-providers:
     url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Notion/Notion_No_Resolve.yaml'
     path: './RuleSet/Notion.yaml'
 
+  Mail:
+    <<: *RuleSet
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Mail/Mail_No_Resolve.yaml'
+    path: './RuleSet/Mail.yaml'
+
+  OneDrive:
+    <<: *RuleSet
+    url: 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/OneDrive/OneDrive_No_Resolve.yaml'
+    path: './RuleSet/OneDrive.yaml'
+
+    
+
 # 分流规则指向
 rules:
+ - DOMAIN-SUFFIX,appstorrent.ru,DIRECT
  - RULE-SET,OpenAI,AI
  - RULE-SET,Gemini,AI
  - RULE-SET,AI_Platforms,AI
  - RULE-SET,Ai_non_ip,AI
-# - RULE-SET,Ai,AI
+ - RULE-SET,Claude,AI
+ - RULE-SET,Anthropic,AI
+ - RULE-SET,Mail,📧 Mail
  - RULE-SET,Apple,Apple
  - RULE-SET,Spotify,Spotify
  - RULE-SET,TikTok,TikTok
@@ -810,6 +900,7 @@ rules:
  - RULE-SET,Epic,Gamer
  - RULE-SET,Xbox,Gamer
  - RULE-SET,Microsoft,Microsoft
+ - RULE-SET,OneDrive,OneDrive
  - RULE-SET,Proxy,Proxy
  - RULE-SET,China,DIRECT
  - RULE-SET,LAN,DIRECT
