@@ -1,0 +1,8 @@
+#!name=VIP合集
+#!desc=解锁了一些软件的VIP随时和谐
+# from https://raw.githubusercontent.com/bai1zi/shadowrocket-surge-loon-qx/refs/heads/main/vip.sgmodule
+[Script]
+# > 彩云天气 svip
+彩云天气 = type=http-response,requires-body=1,max-size=0,pattern=https?:\/\/biz\.caiyunapp\.com\/(membership_rights|v2\/user),script-path=https://raw.githubusercontent.com/githubdulong/Script/master/cytq.js
+[MITM]
+hostname=biz.caiyunapp.com
